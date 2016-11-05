@@ -3,6 +3,8 @@ exports.test = (r) => console.log(response[2]);
 
 
 //exports.newMethod = (r) => 
+
+exports.randHash = (r) => hashtags[Math.floor(Math.random() * hashtags.length)];
 //-----------------------------------------------
 
 var doc = " If symptoms persist, seek your healthcare professional."
@@ -70,10 +72,10 @@ var hashtags  = [
 	"#meds",
 	"#medical",
 	"#infection",
-
 	];
 
-var healthTerms = `Abdominal Pain
+/*
+var healthTerms = 'Abdominal Pain
 	Abdominal Pain in Children
 	Acetaminophen Poisoning
 	Alcohol Intoxication
@@ -242,7 +244,7 @@ var healthTerms = `Abdominal Pain
 	Shoulder and Neck Pain
 	Shoulder Dislocation
 	Shoulder Separation
-	Skier's Thumb
+	Skiers Thumb
 	Slipped Disk
 	Smoke Inhalation
 	Snakebite
@@ -264,7 +266,7 @@ var healthTerms = `Abdominal Pain
 	Tick Removal
 	Toothache
 	Toxic Shock Syndrome
-	Traveler's Diarrhea
+	Travelers Diarrhea
 	Vaginal Bleeding
 	Vaginal Foreign Body
 	Vertigo
@@ -272,4 +274,5 @@ var healthTerms = `Abdominal Pain
 	Vomiting During Pregnancy
 	Vomiting/Spitting Up in Children
 	Whiplash
-	Wrist Injury`;
+	Wrist Injury';
+*/
