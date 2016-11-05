@@ -9,6 +9,7 @@ provide us with a more accurate diagnosis.
 var Twit = require('twit'); // Twitter library
 var T = new Twit(require('./config.js')); // config file; api keys
 var google = require('google'); // Our (custom) Google library
+var symptoms = require('./symptomDict.js');
 
 setInterval(tweetMessage, 1000 * 60 * 30); // runs the code every 30 min
 
@@ -16,8 +17,9 @@ function runner() {
   //retweetLatest("#test");
   //findSickTweet();
   //tweetMessage("boop im a bot");
-  symSearch("headache");
-  console.log(myResults);
+  //symSearch("headache");
+  //console.log(myResults);
+  symptoms.test();
 }
 
 // This function tweets the String in the variable message
@@ -118,7 +120,7 @@ function symSearch(query) {
       for (var j = 0; j < treatmentResults.length; j++) {
         if (treatmentResults[j].includes("WebMD")) {
           console.log(treatmentResults[j]);
-          
+
           tweetMessage(treatmentResults[j]);
           return null;
         }
