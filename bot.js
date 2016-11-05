@@ -1,5 +1,8 @@
 // This Example shows how to tweet a simple message.
 
+
+
+
 // Our Twitter library
 var Twit = require('twit');
 
@@ -10,7 +13,7 @@ var message = "Hakuna Matata!";
 var T = new Twit(require('./config.js'));
 
 // This function tweets the String in the variable message
-function tweetMessage() {
+function tweetMessage(message) {
 
 T.post('statuses/update', { status: message }, function(err, data, response) {
   		console.log(data)
@@ -39,12 +42,44 @@ function selectTweet(query) {
     //id = tweetData[Math.random() * 10].id_str;
 }
 
+
+
+function retweetLatest(myTag) {
+var tagSearch = {q: myTag, count: 10, result_type: "recent"}; 
+T.get('search/tweets', tagSearch, function (error, data) {
+  // log out any errors and responses
+  console.log(error, data);
+  // If our search request to the server had no errors...
+  if (!error) {
+    // ...then we grab the ID of the tweet we want to retweet...
+  var retweetId = data.statuses[0].id_str;
+  // ...and then we tell Twitter we want to retweet it!
+  T.post('statuses/retweet/' + retweetId, { }, function (error, response) {
+    if (response) {
+      console.log('Success! Check your bot, it should have retweeted something.')
+    }
+    // If there was an error with our Twitter call, we print it out here.
+    if (error) {
+      console.log('There was an error with Twitter:', error);
+    }
+  })
+  }
+  // However, if our original search request had an error, we want to print it out here.
+  else {
+    console.log('There was an error with your hashtag search:', error);
+  }
+});
+}
+
 //tweetMessage(); // Run the function!
-console.log((90071992547409921).toString());
+//console.log((90071992547409921).toString());
 //selectTweet("leukemia");
 
 setInterval(tweetMessage, 1000 * 60 * 60); // Tweets the message every hour
 
+//
+
+}
 //Goog Stuffz
 
 // Our (custom) Google library
@@ -71,8 +106,9 @@ function symSearch(query) {
     })
 }
 
-symSearch('milk');
-
+//symSearch('milk');
+retweetLatest("medicine");
+//checkDM();
 
 /*Late Nite Notes: Make the bot read the words in the tweet. If any of the words are on our 
 list of "trouble words" then add that word to our google search query. This will (maybe) provide
