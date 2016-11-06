@@ -1,11 +1,15 @@
 
-exports.test = (r) => console.log(response[2]);
-exports.symArray = (r) => symptoms.split("\n");
-
-
-//exports.newMethod = (r) => 
-
 exports.randHash = (r) => hashtags[Math.floor(Math.random() * hashtags.length)];
+exports.symArray = (r) => symptoms.split("\n");
+exports.randSymKey = (r) => {
+	var symKeys = Object.keys(symptoms);
+	return symKeys[Math.floor(Math.random() * symKeys.length)];
+}
+
+//exports.newMethod = (r) => YOUR CODE
+//exports.test = (r) => console.log(response[2]);
+
+
 //-----------------------------------------------
 
 var doc = " If symptoms persist, seek your healthcare professional."

@@ -9,15 +9,16 @@ provide us with a more accurate diagnosis.
 var Twit = require('twit'); // Twitter library
 var T = new Twit(require('./config.js')); // config file; api keys
 var google = require('google'); // Our (custom) Google library
-var symptoms = require('./symptomDict.js');
+var symDict = require('./symptomDict.js');
 
 //setInterval(runner, 1000 * 15); // runs the code every 30 min
 
 function runner() {
-  retweetLatest(symptoms.randHash());
+  //retweetLatest(symptoms.randHash());
   //symSearch("headache");
   //console.log(myResults);
   //replyTweet("lol");
+  console.log(symDict.randSymKey());
   
 }
 
@@ -62,7 +63,7 @@ function replyTweet(query, message) {
 
 
 function retweetLatest(myTag) {  
-var tagSearch = {q: myTag, count: 10, result_type: "recent"}; 
+var tagSearch = {q: myTag, count: 10, result_type: "mixed"}; 
 T.get('search/tweets', tagSearch, function (error, data) {
   // log out any errors and responses
   console.log(error, data);
