@@ -9,17 +9,18 @@ provide us with a more accurate diagnosis.
 var Twit = require('twit'); // Twitter library
 var T = new Twit(require('./config.js')); // config file; api keys
 var google = require('google'); // Our (custom) Google library
-var symDict = require('./symptomDict.js');
+var symptoms = require('./symptomDict.js');
+
+var modes = [
+  retweetLatest(symptoms.randHash()), 
+  replyTweet(symptoms.randSym(), symptoms.findResponse()),
+  symSearch(symptoms.randTerm())
+  ];
 
 //setInterval(runner, 1000 * 15); // runs the code every 30 min
 
 function runner() {
-  //retweetLatest(symptoms.randHash());
-  //symSearch("headache");
-  //console.log(myResults);
-  //replyTweet("lol");
-  console.log(symDict.randSymKey());
-  
+  modes[Math.floor(Math.random() * modes.length)];  
 }
 
 // This function tweets the String in the variable message
@@ -63,14 +64,19 @@ function replyTweet(query, message) {
 
 
 function retweetLatest(myTag) {  
-var tagSearch = {q: myTag, count: 10, result_type: "mixed"}; 
+var tagSearch = {q: myTag, count: 10, result_type: "popular"}; 
 T.get('search/tweets', tagSearch, function (error, data) {
   // log out any errors and responses
   console.log(error, data);
   // If our search request to the server had no errors...
   if (!error) {
     // ...then we grab the ID of the tweet we want to retweet...
-  var retweetId = data.statuses[0].id_str;
+  try {
+    var retweetId = data.statuses[0].id_str;
+  }
+  catch(err) {
+    runner();
+  }
   // ...and then we tell Twitter we want to retweet it!
     T.post('statuses/retweet/' + retweetId, { }, function (error, response) {
       if (response) {

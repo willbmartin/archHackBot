@@ -1,9 +1,15 @@
 
+var randSym;
+
 exports.randHash = (r) => hashtags[Math.floor(Math.random() * hashtags.length)];
-exports.symArray = (r) => symptoms.split("\n");
-exports.randSymKey = (r) => {
+exports.randTerm = (r) => termArray[Math.floor(Math.random() * termArray.length)];
+exports.randSym = (r) => {
 	var symKeys = Object.keys(symptoms);
-	return symKeys[Math.floor(Math.random() * symKeys.length)];
+	randSym = symKeys[Math.floor(Math.random() * symKeys.length)];
+	return randSym;
+}
+exports.findResponse = (r) => {
+	return symptoms[randSym];
 }
 
 //exports.newMethod = (r) => YOUR CODE
@@ -12,10 +18,10 @@ exports.randSymKey = (r) => {
 
 //-----------------------------------------------
 
-var doc = " If symptoms persist, seek your healthcare professional."
+var doc = " If symptoms persist, seek a professional."
 var response = [
 	"Drink lots of fluids and lie down." + doc,
-	"Sounds painful! Try drinking some soda or applying a heat pack to the area." + doc,
+	"Sounds painful! Try drinking somthing fizzy or applying a heat pack to the area." + doc,
 	"Keep lots of tissues on hand or use a saline nasal spray." + doc,
 	"You might have a cold! Try taking some over-the-counter cold medicine." + doc,
 	"Stop scratching! Try rubbing some over-the-counter itch ointment on the area." + doc,
@@ -67,10 +73,8 @@ var symptoms = {
 };
 
 
-var hashtags  = [
-	"#sick", 
-	"#ill", 
-	"#hurts", 
+var hashtags  = [ 
+	"#illness",
 	"#health", 
 	"#healthcare",
 	"#medicine",
@@ -280,3 +284,5 @@ var healthTerms = `Abdominal Pain
 	Vomiting/Spitting Up in Children
 	Whiplash
 	Wrist Injury`;
+
+var termArray = healthTerms.split("\n");
