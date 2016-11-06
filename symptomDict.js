@@ -1,5 +1,6 @@
 
 exports.test = (r) => console.log(response[2]);
+exports.symArray = (r) => symptoms.split("\n");
 
 
 //exports.newMethod = (r) => 
@@ -74,8 +75,8 @@ var hashtags  = [
 	"#infection",
 	];
 
-/*
-var healthTerms = 'Abdominal Pain
+
+var healthTerms = `Abdominal Pain
 	Abdominal Pain in Children
 	Acetaminophen Poisoning
 	Alcohol Intoxication
@@ -274,5 +275,4 @@ var healthTerms = 'Abdominal Pain
 	Vomiting During Pregnancy
 	Vomiting/Spitting Up in Children
 	Whiplash
-	Wrist Injury';
-*/
+	Wrist Injury`;
