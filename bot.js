@@ -1,10 +1,4 @@
 
-/*Late Nite Notes: Make the bot read the words in the tweet. If any of the words are on our 
-list of "trouble words" then add that word to our google search query. This will (maybe) provide
-provide us with a more accurate diagnosis.
-*/
-
-
 
 var Twit = require('twit'); // Twitter library
 var T = new Twit(require('./config.js')); // config file; api keys
@@ -17,7 +11,7 @@ var modes = [
   symSearch(symptoms.randTerm())
   ];
 
-//setInterval(runner, 1000 * 15); // runs the code every 30 min
+
 
 function runner() {
   modes[Math.floor(Math.random() * modes.length)];  
@@ -57,9 +51,6 @@ function replyTweet(query, message) {
         console.log('There was an error with your hashtag search:', error);
       }
     });
-
-    //console.log(tweetId);
-    //id = tweetData[Math.random() * 10].id_str;
 }
 
 
@@ -104,10 +95,8 @@ function symSearch(query) {
     var nextCounter = 0
     var treatmentResults = ["","",""];
 
-
     google(query + " treatment", function (err, res){
       if (err) console.error(err)
-
 
       var forCount = 0
       var grammar = ''
@@ -155,3 +144,4 @@ function symSearch(query) {
 }
 
 runner();
+setInterval(runner, 1000 * 60 * 10); // runs the code every 10 min

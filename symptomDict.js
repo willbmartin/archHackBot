@@ -21,7 +21,7 @@ exports.findResponse = (r) => {
 var doc = " If symptoms persist, seek a professional."
 var response = [
 	"Drink lots of fluids and lie down." + doc,
-	"Sounds painful! Try drinking somthing fizzy or applying a heat pack to the area." + doc,
+	"Sounds painful! Try drinking something fizzy or applying a heat pack to the area." + doc,
 	"Keep lots of tissues on hand or use a saline nasal spray." + doc,
 	"You might have a cold! Try taking some over-the-counter cold medicine." + doc,
 	"Stop scratching! Try rubbing some over-the-counter itch ointment on the area." + doc,
